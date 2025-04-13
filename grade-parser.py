@@ -10,6 +10,15 @@ class Student:
         self.state = state
         self.letterGrade = None
 
+    def createHTMLTable(self):
+        with open("output.html", "a") as output:
+            output.write("<tr>\n")
+            output.write("<td>" + self.ID + "</td>\n")
+            output.write("<td>" + self.fName + "</td>\n")
+            output.write("<td>" + self.lName + "</td>\n")
+            output.write("<td>" + self.letterGrade + "</td>\n")
+            output.write("</tr>\n")
+
 # Variable for storing student objects
 students = []
 
@@ -89,3 +98,20 @@ for idx, student in enumerate(students):
 
 # Final sort by last name, first name, then ID
 students.sort(key=lambda s: (s.lName, s.fName, s.ID))
+
+# Write to output.html
+with open("output.html", "w") as output:
+    output.write("<!DOCTYPE html>\n")
+    output.write("<html>\n")
+    output.write("<body>\n")
+    output.write('<table border="1">\n')
+
+# Add students to table
+for student in students:
+    student.createHTMLTable()
+
+# Complete output.html file
+with open("output.html", "a") as output:
+    output.write("</table>\n")
+    output.write("</body>\n")
+    output.write("</html>\n")
