@@ -14,5 +14,3 @@ This Python project was developed for CS-3323 - Principles of Programming Langua
   - Remaining students: Grade C (if Eager), D (if Lazy)
 - Outputs a neatly formatted HTML table sorted by:
   - Last name → First name → ID
-
-## File Structure
