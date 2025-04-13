@@ -68,3 +68,24 @@ with open("input.txt", "r") as file:
                     state = text[j]
             counter += 1
         students.append(Student(ID, fName, lName, score, participation, city, state))
+
+# Sort students by score descending, then participation (E > L)
+students.sort(key=lambda s: (-int(s.score), s.participation != 'E'))
+
+# Assign grades based on ranking
+n = len(students)
+third = n // 3
+tenth = -(-n // 10)  # ceil(n/10) without math module
+
+for idx, student in enumerate(students):
+    if idx < third:
+        student.letterGrade = "A"
+    elif idx < 2 * third:
+        student.letterGrade = "B"
+    elif idx >= n - tenth:
+        student.letterGrade = "F"
+    else:
+        student.letterGrade = "C" if student.participation == 'E' else "D"
+
+# Final sort by last name, first name, then ID
+students.sort(key=lambda s: (s.lName, s.fName, s.ID))
